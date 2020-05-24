@@ -1,9 +1,10 @@
-# Shutdown Target
+#!/usr/bin/python3
 import sys
-from os import system,path,listdir,popen
+from os import chdir,system,getcwd,path,listdir,popen
 from time import sleep
 import code_translator
 
+chdir(path.dirname(sys.argv[0]))
 def create_sketch():
     print("[+] Create New Sketch ...\n")
     status = system("arduino-cli sketch new /tmp/{}".format(sketch))
@@ -25,6 +26,7 @@ def upload_sketch():
 
 def custom_command_attack(file):
     file = path.expanduser(file)
+    print(getcwd())
     f = open("{}".format(script))
     sc = f.read()
     f.close()
@@ -59,7 +61,7 @@ compile_sketch()
 sleep(1)
 upload_sketch()
 
-status = system("./change_firmware.sh firmwares/Arduino-keyboard-0.3.hex {}".format(micro))
+status = system("./change_firmware.sh ./firmwares/Arduino-keyboard-0.3.hex {}".format(micro))
 
 system("rm -r /tmp/{}".format(sketch))
 print("---------------------")

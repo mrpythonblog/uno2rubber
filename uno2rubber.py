@@ -1,5 +1,7 @@
+#!/usr/bin/python3
 #####################################
 # Project Name : Uno2Rubber         #
+# Version : 1.0                     #
 # Programmer : Hossein Ahmadi       #
 # Weblog : MrPython.blog.ir         #
 #####################################
@@ -37,7 +39,10 @@ class loop :
                 self.makeboard()
                 sys.exit()
             elif command == "2":
-                system("./libs/change_firmware.sh {} {}".format("./firmwares/Arduino-usbserial-uno.hex","atmega16u2"))
+                if path.dirname(sys.argv[0]) != "":
+                    system("{}libs/change_firmware.sh {} {}".format(path.dirname(sys.argv[0])+"/","{}/libs/firmwares/Arduino-usbserial-uno.hex".format(path.dirname(sys.argv[0])),"atmega16u2"))
+                else:
+                    system("libs/change_firmware.sh {} {}".format("./libs/firmwares/Arduino-usbserial-uno.hex","atmega16u2"))
                 sys.exit()
     def makeboard(self):
         batchfile = input("BatchFile : ")
@@ -51,7 +56,10 @@ class loop :
             sleep(4)
             sys.exit()
         del files
-        system("python3 ./libs/compiler.py {} {}".format(PORT,batchfile))
+        if path.dirname(sys.argv[0]) != "":
+            system("{}/libs/compiler.py {} {}".format(path.dirname(sys.argv[0]),PORT,path.abspath(batchfile)))
+        else:
+            system("python3 ./libs/compiler.py {} {}".format(PORT,batchfile))
 
 
 if __name__ == "__main__":

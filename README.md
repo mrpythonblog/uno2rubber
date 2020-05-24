@@ -14,7 +14,7 @@ uno2rubber can flash standard firmware of your board , so you can making your no
 
 ----------HOW TO USE------------------
 
-1 - install uno2rubber . run -> "chmod +x install.sh ; sudo ./install.sh"
+1 - install uno2rubber . run -> "chmod +x configure.sh ; sudo ./configure.sh"
 
 2 - Execute Script -> "python3 uno2rubber.py"
 
