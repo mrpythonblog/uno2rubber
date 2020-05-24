@@ -44,7 +44,7 @@ class loop :
         if not path.isfile(batchfile):
             print("ERROR : There isn't {}".format(batchfile))
             sys.exit()
-        PORT = input("PORT : ")
+        PORT = input("PORT (Arduino PORT) : ")
         files = listdir("/dev")
         if not path.basename(PORT) in files:
             print("ERROR : {} Not Found !".format(PORT))
